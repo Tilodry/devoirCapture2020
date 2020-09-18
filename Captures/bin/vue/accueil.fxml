@@ -277,7 +277,7 @@
       </Pane>
    </children>
    <stylesheets>
-      <URL value="@decoration/captures.css" />
-      <URL value="@decoration/captures-c.css" />
+      <URL value="@decoration/accueil.css" />
+      <URL value="@decoration/accueil-c.css" />
    </stylesheets>
 </AnchorPane>

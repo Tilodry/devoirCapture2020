@@ -6,7 +6,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 // Classe qui regroupe toutes les vues et permet de changer de page
-public abstract class Navigateur extends Application{ // Application de javafx est en réalité une fenêtre
+public abstract class Navigateur extends Application {
 	
 	protected Stage stade;
 		
@@ -16,7 +16,7 @@ public abstract class Navigateur extends Application{ // Application de javafx e
 	{
 		instance = this;
 		Logger.setLevel(Logger.INFO);
-		VueCaptures.getInstance().activerControles();
+		VueAccueil.getInstance().activerControles();
 	}
 	
 	public void afficherVue(Vue vue)

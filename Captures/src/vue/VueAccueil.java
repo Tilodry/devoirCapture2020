@@ -1,19 +1,19 @@
 package vue;
 import com.sun.media.jfxmedia.logging.Logger;
 
-import controleur.ControleurCaptures;
+import controleur.ControleurAccueil;
 
-public class VueCaptures extends Vue {
+public class VueAccueil extends Vue {
 
-	protected ControleurCaptures controleur;
-	protected static VueCaptures instance = null; 
-	public static VueCaptures getInstance() {if(null==instance)instance = new VueCaptures();return VueCaptures.instance;}; 
+	protected ControleurAccueil controleur;
+	protected static VueAccueil instance = null; 
+	public static VueAccueil getInstance() {if(null==instance)instance = new VueAccueil();return VueAccueil.instance;}; 
 	
-	private VueCaptures() 
+	private VueAccueil() 
 	{
-		super("captures.fxml"); 
-		super.controleur = this.controleur = new ControleurCaptures();
-		Logger.logMsg(Logger.INFO, "new VueCaptures()");
+		super("accueil.fxml"); 
+		super.controleur = this.controleur = new ControleurAccueil();
+		Logger.logMsg(Logger.INFO, "new VueAccueil()");
 	}
 		
 	public void activerControles()

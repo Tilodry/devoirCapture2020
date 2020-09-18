@@ -8,7 +8,7 @@ public class Fenetre extends Navigateur {
 	@Override
 	public void start(Stage stade) throws Exception {
 		//stade.initStyle(StageStyle.UNDECORATED);
-		stade.setScene(VueCaptures.getInstance()); // une vue est appliquée à la fenêtre
+		stade.setScene(VueAccueil.getInstance());
 		stade.show();
 		this.stade = stade;
 	}
