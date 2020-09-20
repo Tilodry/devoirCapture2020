@@ -15,6 +15,16 @@ Pane.titre #journee-titre
     -fx-font-weight:bold;
     -fx-font-size:30;
 }
+Pane.titre #mois-titre
+{
+    -fx-font-weight:bold;
+    -fx-font-size:30;
+}
+Pane.titre #annee-titre
+{
+    -fx-font-weight:bold;
+    -fx-font-size:30;
+}
 TextField, ComboBox
 {
     -fx-background-radius:1em;
