@@ -1,11 +1,7 @@
 <?php
-  include "accesseur/NeoDAO.php";
+  require_once "../accesseur/NeoDAO.php";
 
-  $SQL_LISTE_NEOS = "SELECT * FROM neo";
-  $requete = $basededonnees->prepare($SQL_LISTE_NEOS);
-  $requete->execute();
-  $neos = $requete->fetchAll();
-  print_r($neos);
-
-  //header ("Content-Type:text/xml");
-  //echo '<?xml version="1.0" encoding="UTF-8"?>';
+  $neoDAO = new NeoDAO();
+  print_r($neoDAO);
+  $listeNeos = $neoDAO->listerNeos();
+  print_r($listeNeos);
