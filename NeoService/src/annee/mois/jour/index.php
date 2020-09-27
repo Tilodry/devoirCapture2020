@@ -3,4 +3,6 @@
 
   $neoDAO = new NeoDAO();
   $resumeJour = $neoDAO->resumerJour(2020, 1, 1);
-  print_r($resumeJour);
+  //print_r($resumeJour);
+  $listeNeosDuJour = $neoDAO->listerNeosDuJour(2020, 1, 1);
+  print_r($listeNeosDuJour);
