@@ -3,5 +3,5 @@
 
   $neoDAO = new NeoDAO();
   print_r($neoDAO);
-  $listeNeos = $neoDAO->listerNeos();
-  print_r($listeNeos);
+  $resumeAnnee = $neoDAO->resumerAnnee(2020);
+  print_r($resumeAnnee);
