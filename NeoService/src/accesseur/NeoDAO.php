@@ -12,7 +12,7 @@
       $requeteResumerAnnee->bindParam(':annee', $annee, PDO::PARAM_INT);
       $requeteResumerAnnee->execute();
 
-      return $requeteResumerAnnee->fetchAll(PDO::FETCH_OBJ);
+      return $requeteResumerAnnee->fetch(PDO::FETCH_OBJ);
     }
 
     function resumerMois(int $annee, int $mois) {
@@ -27,7 +27,7 @@
       $requeteResumerMois->bindParam(':mois', $mois, PDO::PARAM_INT);
       $requeteResumerMois->execute();
 
-      return $requeteResumerMois->fetchAll(PDO::FETCH_OBJ);
+      return $requeteResumerMois->fetch(PDO::FETCH_OBJ);
     }
 
     function resumerJour(int $annee, int $mois, int $jour) {
@@ -43,7 +43,7 @@
       $requeteResumerMois->bindParam(':jour', $jour, PDO::PARAM_INT);
       $requeteResumerMois->execute();
 
-      return $requeteResumerMois->fetchAll(PDO::FETCH_OBJ);
+      return $requeteResumerMois->fetch(PDO::FETCH_OBJ);
     }
 
     function listerNeosDuJour(int $annee, int $mois, int $jour) {
