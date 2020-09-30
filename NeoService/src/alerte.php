@@ -1,12 +1,24 @@
 <?php
   require_once "accesseur/NeoDAO.php";
 
+  /* TRAITEMENT DES PARAMETRES */
+
+  $listeDeFiltres = array(
+    'annee'=> FILTER_VALIDATE_INT,
+    'mois' => FILTER_VALIDATE_INT,
+    'jour' => FILTER_VALIDATE_INT,
+    'seuil' => FILTER_VALIDATE_INT
+  );
+  $parametresFiltres = filter_input_array(INPUT_GET, $listeDeFiltres);
+
   /* RECUEIL DES DONNEES */
 
   $neoDAO = new NeoDAO();
-  $resumeJour = $neoDAO->resumerJour(2020, 1, 1);
-  $distanceCritique = 5;
-  $neosCritiques = $neoDAO->listerNeosCritiques(2020, 1, 1, $distanceCritique);
+  $resumeJour = $neoDAO->resumerJour($parametresFiltres["annee"],
+  $parametresFiltres["mois"], $parametresFiltres["jour"]);
+  $neosCritiques = $neoDAO->listerNeosCritiques($parametresFiltres["annee"],
+  $parametresFiltres["mois"], $parametresFiltres["jour"],
+  $parametresFiltres["seuil"]);
   //print_r($listeNeosCritiques);
 
   /* AFFICHAGE DES DONNEES */
@@ -17,7 +29,7 @@
 
   <jour>
     <date-jour><?=$resumeJour->jour?></date-jour>
-    <distance-critique><?=$distanceCritique?></distance-critique>
+    <distance-critique><?=$parametresFiltres["seuil"]?></distance-critique>
     <liste-near-earth-objects>
     <?php
     foreach ($neosCritiques as $neo) {

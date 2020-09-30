@@ -1,12 +1,23 @@
 <?php
   require_once "accesseur/NeoDAO.php";
 
+  /* TRAITEMENT DES PARAMETRES */
+
+  $listeDeFiltres = array(
+    'annee'=> FILTER_VALIDATE_INT,
+    'mois' => FILTER_VALIDATE_INT,
+    'jour' => FILTER_VALIDATE_INT
+  );
+  $parametresFiltres = filter_input_array(INPUT_GET, $listeDeFiltres);
+
   /* RECUEIL DES DONNEES */
 
   $neoDAO = new NeoDAO();
-  $resumeAnnee = $neoDAO->resumerAnnee(2020);
-  $resumeJour = $neoDAO->resumerJour(2020, 1, 1);
-  $neos = $neoDAO->listerNeosDuJour(2020, 1, 1);
+  $resumeAnnee = $neoDAO->resumerAnnee($parametresFiltres["annee"]);
+  $resumeJour = $neoDAO->resumerJour($parametresFiltres["annee"],
+  $parametresFiltres["mois"], $parametresFiltres["jour"]);
+  $neos = $neoDAO->listerNeosDuJour($parametresFiltres["annee"],
+  $parametresFiltres["mois"], $parametresFiltres["jour"]);
 
   /* AFFICHAGE DES DONNEES */
 

@@ -1,13 +1,19 @@
 <?php
   require_once "accesseur/NeoDAO.php";
 
+  /* TRAITEMENT DES PARAMETRES */
+
+  if (isset($_GET['annee'])) {
+    $annee = filter_var($_GET['annee'], FILTER_VALIDATE_INT);
+  }
+
   /* RECUEIL DES DONNEES */
 
   $neoDAO = new NeoDAO();
   //print_r($neoDAO);
-  $resumeAnnee = $neoDAO->resumerAnnee(2020);
+  $resumeAnnee = $neoDAO->resumerAnnee($annee);
   //print_r($resumeAnnee);
-  $detailsAnnee = $neoDAO->detaillerAnnee(2020);
+  $detailsAnnee = $neoDAO->detaillerAnnee($annee);
   //print_r($detailsAnnee);
 
   /* AFFICHAGE DES DONNEES */
@@ -17,7 +23,7 @@
   ?>
 
   <annee>
-    <date-annee><?=$resumeAnnee->annee?></date-annee>
+    <date-annee><?=$annee?></date-annee>
     <distance-minimum-annee><?=$resumeAnnee->minimum?></distance-minimum-annee>
     <distance-moyenne-annee><?=$resumeAnnee->moyenne?></distance-moyenne-annee>
     <distance-maximum-annee><?=$resumeAnnee->maximum?></distance-maximum-annee>

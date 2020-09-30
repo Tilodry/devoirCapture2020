@@ -1,12 +1,22 @@
 <?php
   require_once "accesseur/NeoDAO.php";
 
+  /* TRAITEMENT DES PARAMETRES */
+
+  $listeDeFiltres = array(
+    'annee'=> FILTER_VALIDATE_INT,
+    'mois' => FILTER_VALIDATE_INT
+  );
+  $parametresFiltres = filter_input_array(INPUT_GET, $listeDeFiltres);
+
   /* RECUEIL DES DONNEES */
 
   $neoDAO = new NeoDAO();
-  $resumeMois = $neoDAO->resumerMois(2020, 1);
+  $resumeMois = $neoDAO->resumerMois($parametresFiltres["annee"],
+  $parametresFiltres["mois"]);
   //print_r($resumeMois);
-  $detailsMois = $neoDAO->detaillerMois(2020, 1);
+  $detailsMois = $neoDAO->detaillerMois($parametresFiltres["annee"],
+  $parametresFiltres["mois"]);
   //print_r($detailsMois);
 
   /* AFFICHAGE DES DONNEES */
@@ -16,6 +26,7 @@
   ?>
 
   <mois>
+    <test><?=$parametresFiltres["annee"]?></test>
     <date-mois><?=$resumeMois->mois?></date-mois>
     <distance-minimum-mois><?=$resumeMois->minimum?></distance-minimum-mois>
     <distance-moyenne-mois><?=$resumeMois->moyenne?></distance-moyenne-mois>
