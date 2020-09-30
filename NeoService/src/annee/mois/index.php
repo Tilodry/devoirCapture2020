@@ -20,7 +20,7 @@
     <distance-minimum-mois><?=$resumeMois->minimum?></distance-minimum-mois>
     <distance-moyenne-mois><?=$resumeMois->moyenne?></distance-moyenne-mois>
     <distance-maximum-mois><?=$resumeMois->maximum?></distance-maximum-mois>
-    <jours>
+    <liste-jours>
     <?php
     foreach ($detailsMois as $jour) {
     ?>
@@ -33,5 +33,5 @@
     <?php
     }
     ?>
-    </jours>
+  </liste-jours>
   </mois>

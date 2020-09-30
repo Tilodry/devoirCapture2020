@@ -20,7 +20,7 @@
     <distance-minimum-jour><?=$resumeJour->minimum?></distance-minimum-jour>
     <distance-moyenne-jour><?=$resumeJour->moyenne?></distance-moyenne-jour>
     <distance-maximum-jour><?=$resumeJour->maximum?></distance-maximum-jour>
-    <near-earth-objects>
+    <liste-near-earth-objects>
     <?php
     foreach ($neos as $neo) {
     ?>
@@ -32,5 +32,5 @@
     <?php
     }
     ?>
-    </near-earth-objects>
+  </liste-near-earth-objects>
   </jour>
