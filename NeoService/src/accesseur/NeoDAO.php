@@ -5,7 +5,8 @@
     function resumerAnnee(int $annee) {
       require "basededonnees.php";
 
-      $RESUMER_ANNEE = "SELECT min(distance) as minimum, avg(distance) as moyenne,
+      $RESUMER_ANNEE = "SELECT date_part('year', date) as annee,
+      min(distance) as minimum, avg(distance) as moyenne,
       max(distance) as maximum FROM neo WHERE date_part('year', date) = :annee
       GROUP BY date_part('year', date)";
       $requeteResumerAnnee = $basededonnees->prepare($RESUMER_ANNEE);
@@ -77,6 +78,21 @@
       $requeteDetaillerMois->execute();
 
       return $requeteDetaillerMois->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    function detaillerAnnee(int $annee) {
+      require "basededonnees.php";
+
+      $DETAILLER_ANNEE = "SELECT to_char(date, 'yyyy-mm') as mois,
+      min(distance) as minimum, avg(distance) as moyenne,
+      max(distance) as maximum FROM neo WHERE date_part('year', date) = :annee
+	    GROUP BY date_part('month', date), mois
+	    ORDER BY date_part('month', date) ASC";
+      $requeteDetaillerAnnee = $basededonnees->prepare($DETAILLER_ANNEE);
+      $requeteDetaillerAnnee->bindParam(':annee', $annee, PDO::PARAM_INT);
+      $requeteDetaillerAnnee->execute();
+
+      return $requeteDetaillerAnnee->fetchAll(PDO::FETCH_OBJ);
     }
 
 }
