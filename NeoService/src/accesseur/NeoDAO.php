@@ -95,4 +95,23 @@
       return $requeteDetaillerAnnee->fetchAll(PDO::FETCH_OBJ);
     }
 
+    function listerNeosCritiques(int $annee, int $mois, int $jour, int $distanceCritique) {
+      require "basededonnees.php";
+
+      $LISTER_NEOS_CRITIQUES = "SELECT * FROM neo
+      WHERE date_part('day', date) = :jour
+      AND date_part('month', date) = :mois
+      AND date_part('year', date) = :annee
+	    AND distance <= :distanceCritique";
+      $requeteGenererAlerte = $basededonnees->prepare($LISTER_NEOS_CRITIQUES);
+      $requeteGenererAlerte->bindParam(':annee', $annee, PDO::PARAM_INT);
+      $requeteGenererAlerte->bindParam(':mois', $mois, PDO::PARAM_INT);
+      $requeteGenererAlerte->bindParam(':jour', $jour, PDO::PARAM_INT);
+      $requeteGenererAlerte->bindParam(':distanceCritique', $distanceCritique,
+      PDO::PARAM_INT);
+      $requeteGenererAlerte->execute();
+
+      return $requeteGenererAlerte->fetchAll(PDO::FETCH_OBJ);
+    }
+
 }
