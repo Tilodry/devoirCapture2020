@@ -88,29 +88,26 @@
 #### /Neo/annee/2020/mois/8/jour/31/resume/
 
 ```xml
-<2020>
-    <distance-moyenne-annee>68.1753672872</distance-moyenne-annee>
-    <2020-08-31>
-    	<distance-moyenne-jour>59.8755282851</distance-moyenne-jour>
-        <near-earth-objects>
-            <near-earth-object>
-                <id>1</id>
-                <date-approche>2020-08-31 14:16</date-approche>
-                <distance>39.9785482853</distance>
-            </near-earth-object>
-            <near-earth-object>
-                <id>2</id>
-                <date-approche>2020-08-31 15:06</date-approche>
-                <distance>101.2522503457</distance>
-            </near-earth-object>
-            <near-earth-object>
-                <id>...</id>
-                <date-approche>...</date-approche>
-                <distance>...</distance>
-            </near-earth-object>
-    	</near-earth-objects>
-    </2020-08-31>
-</2020>
+<annee>
+	<date-annee>2020</date-annee>
+	<distance-moyenne-annee>59.61035961088</distance-moyenne-annee>
+	<jour>
+		<date-jour>2020-01-01</date-jour>
+		<distance-moyenne-jour>70.6153993155</distance-moyenne-jour>
+		<liste-near-earth-objects>
+			<near-earth-object>
+				<id>1</id>
+				<distance>39.9785482853</distance>
+				<date-approche>2020-01-01 09:08:00</date-approche>
+			</near-earth-object>
+			<near-earth-object>
+				<id>2</id>
+				<distance>101.2522503457</distance>
+				<date-approche>2020-01-01 11:19:00</date-approche>
+			</near-earth-object>
+		</liste-near-earth-objects>
+	</jour>
+</annee>
 ```
 
 
@@ -120,17 +117,16 @@
 #### /Neo/annee/2020/mois/8/jour/31/alerte
 
 ```xml
-<2020>
-	<2020-08-31>
-        <distance-critique>5</distance-critique>
-    	<near-earth-object>
-        	<5>
-                <id>2</id>
-                <date-approche>2020-08-31 11:45</date-approche>
-                <distance>4.2522503457</distance>
-        	</5>
-        </near-earth-object>
-    </2020-08-31>
-</2020>
+<jour>
+	<date-jour>2020-01-01</date-jour>
+	<distance-critique>5</distance-critique>
+	<liste-near-earth-objects>
+		<near-earth-object>
+			<id>7</id>
+			<distance>4.9553672426</distance>
+			<date-approche>2020-01-01 13:55:00</date-approche>
+		</near-earth-object>
+	</liste-near-earth-objects>
+</jour>
 ```
 
