@@ -16,6 +16,7 @@
   ?>
 
   <jour>
+    <date-jour><?=$resumeJour->jour?></date-jour>
     <distance-minimum-jour><?=$resumeJour->minimum?></distance-minimum-jour>
     <distance-moyenne-jour><?=$resumeJour->moyenne?></distance-moyenne-jour>
     <distance-maximum-jour><?=$resumeJour->maximum?></distance-maximum-jour>
@@ -26,7 +27,7 @@
       <near-earth-object>
         <id><?=$neo->id?></id>
         <distance><?=$neo->distance?></distance>
-        <date><?=$neo->date?></date>
+        <date-approche><?=$neo->date?></date-approche>
       </near-earth-object>
     <?php
     }
