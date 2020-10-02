@@ -1,0 +1,7 @@
+RewriteEngine On
+
+RewriteRule ^annee/(.+)/mois/(.+)/jour/(.+)/seuil/(.+)/$ alerte.php?annee=$1&mois=$2&jour=$3&seuil=$4
+RewriteRule ^annee/(.+)/mois/(.+)/jour/(.+)/resume/$ resume.php?annee=$1&mois=$2&jour=$3
+RewriteRule ^annee/(.+)/mois/(.+)/jour/(.+)/$ jour.php?annee=$1&mois=$2&jour=$3
+RewriteRule ^annee/(.+)/mois/(.+)/$ mois.php?annee=$1&mois=$2
+RewriteRule ^annee/(.+)/$ annee.php?annee=$1

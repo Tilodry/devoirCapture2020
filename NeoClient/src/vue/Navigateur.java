@@ -17,6 +17,9 @@ public abstract class Navigateur extends Application {
 		instance = this;
 		Logger.setLevel(Logger.INFO);
 		VueAccueil.getInstance().activerControles();
+		VueJournee.getInstance().activerControles();
+		VueMois.getInstance().activerControles();
+		VueAnnee.getInstance().activerControles();
 	}
 	
 	public void afficherVue(Vue vue)
