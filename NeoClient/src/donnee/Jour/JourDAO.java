@@ -1,29 +1,24 @@
 package donnee.Jour;
-import java.io.IOException;
 import java.io.StringBufferInputStream;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 
 public class JourDAO {
 
 	
 	@SuppressWarnings("deprecation")
-	public void lister()
+	public JourModele lister()
 	{
-		
 		String BALISENeo = "near-earth-object";
 		String BALISEJour = "jour";
-
+		JourModele jourObjet = new JourModele();
 		try {
 			
 			String xml = "<jour>\r\n"
@@ -61,6 +56,12 @@ public class JourDAO {
 					+ "\nDistance minimum du jour : " + minimumJour
 					+ "\nDistance moyenne du jour : " + moyenneJour
 					+ "\nDistance maximum du jour : " + maximumJour);
+
+			jourObjet.setDateJour(jour);
+			jourObjet.setDistanceMinimumJour(Float.parseFloat(minimumJour));
+			jourObjet.setDistanceMoyenneJour(Float.parseFloat(moyenneJour));
+			jourObjet.setDistanceMaximumJour(Float.parseFloat(maximumJour));
+
 			
 			//Affichage et enregistrement des données relatives aux mois
 			NodeList listeMois = document.getElementsByTagName(BALISENeo);
@@ -75,11 +76,14 @@ public class JourDAO {
 				System.out.println("\nNEO n°" + id
 						+ "\nDistance minimale de: " + distance
 						+ "distance Terre-Lune atteinte le : " + dateApproche);
+				NeoModele neo = new NeoModele(Integer.parseInt(id), Float.parseFloat(distance), dateApproche);
+				jourObjet.AddNEO(neo);
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		System.out.println("###########################################################################################\n");
+		return jourObjet;
 	}
 }

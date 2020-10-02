@@ -1,6 +1,6 @@
-package donnee.Annee;
+package donnee.Mois;
 
-public class AnneeObjet 
+public class MoisModele 
 {
 	protected String mois;
 	protected float minimum;
@@ -30,11 +30,11 @@ public class AnneeObjet
 	public void setMaximum(float maximum) {
 		this.maximum = maximum;
 	}
-	public AnneeObjet(String mois) {
+	public MoisModele(String mois) {
 		super();
 		this.mois = mois;
 	}
-	public AnneeObjet(String mois, float minimum, float moyenne, float maximum) {
+	public MoisModele(String mois, float minimum, float moyenne, float maximum) {
 		super();
 		this.mois = mois;
 		this.minimum = minimum;

@@ -80,7 +80,6 @@ public class MoisDAO {
 						+ "\nDistance minimum du jour: " + minimumJour
 						+ "\nDistance moyenne du jour: " + moyenneJour
 						+ "\nDistance maximum du jour: " + maximumJour);
-
 			}
 
 		} catch (Exception e) {
