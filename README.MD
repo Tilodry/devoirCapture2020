@@ -58,7 +58,7 @@
 
 
 
-#### /Neo/annee/2020/mois/8/jour/31
+#### /Neo/annee/2020/mois/8/jour/31/
 
 ```xml
 <jour>
@@ -114,7 +114,7 @@
 
 
 
-#### /Neo/annee/2020/mois/8/jour/31/alerte
+#### /Neo/annee/2020/mois/8/jour/31/seuil/5/
 
 ```xml
 <jour>
