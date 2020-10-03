@@ -18,12 +18,12 @@ public class MoisDAO {
 
 	
 	@SuppressWarnings("deprecation")
-	public void lister()
+	public MoisModele lister()
 	{
 		
 		String BALISEJour = "jour";
 		String BALISEMois = "mois";
-
+		MoisModele moisObjet = new MoisModele();
 		try {
 			
 			String xml = "<mois>\r\n"
@@ -58,12 +58,15 @@ public class MoisDAO {
 			String minimumMois = noeudAnnee.getElementsByTagName("distance-minimum-mois").item(0).getTextContent();
 			String moyenneMois = noeudAnnee.getElementsByTagName("distance-moyenne-mois").item(0).getTextContent();
 			String maximumMois = noeudAnnee.getElementsByTagName("distance-maximum-mois").item(0).getTextContent();			
-			System.out.println("\n\n\n##########################Affichage des données de MoisDAO.java :##########################\n"
+			/*System.out.println("\n\n\n##########################Affichage des données de MoisDAO.java :##########################\n"
 					+ "\nMois : " + mois
 					+ "\nDistance minimum du mois : " + minimumMois
 					+ "\nDistance moyenne du mois : " + moyenneMois
-					+ "\nDistance maximum du mois : " + maximumMois);
-			
+					+ "\nDistance maximum du mois : " + maximumMois);*/
+			moisObjet.setMois(mois);
+			moisObjet.setMinimum(Float.parseFloat(minimumMois));
+			moisObjet.setMoyenne(Float.parseFloat(moyenneMois));
+			moisObjet.setMaximum(Float.parseFloat(maximumMois));
 			
 			//Affichage et enregistrement des données relatives aux jours
 			NodeList listeMois = document.getElementsByTagName(BALISEJour);
@@ -76,15 +79,22 @@ public class MoisDAO {
 				String moyenneJour = noeud.getElementsByTagName("distance-moyenne-jour").item(0).getTextContent();
 				String maximumJour = noeud.getElementsByTagName("distance-maximum-jour").item(0).getTextContent();
 				
-				System.out.println("\nDate du jour : " + jour
+				/*System.out.println("\nDate du jour : " + jour
 						+ "\nDistance minimum du jour: " + minimumJour
 						+ "\nDistance moyenne du jour: " + moyenneJour
-						+ "\nDistance maximum du jour: " + maximumJour);
+						+ "\nDistance maximum du jour: " + maximumJour);*/
+				MoisJourModele jourObjet = new MoisJourModele(
+						jour,
+						Float.parseFloat(minimumJour),
+						Float.parseFloat(moyenneJour),
+						Float.parseFloat(maximumJour));
+				moisObjet.addJour(jourObjet);
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("###########################################################################################\n");
+		//System.out.println("###########################################################################################\n");
+		return moisObjet;
 	}
 }

@@ -51,11 +51,11 @@ public class JourDAO {
 			String minimumJour = noeudAnnee.getElementsByTagName("distance-minimum-jour").item(0).getTextContent();
 			String moyenneJour = noeudAnnee.getElementsByTagName("distance-moyenne-jour").item(0).getTextContent();
 			String maximumJour = noeudAnnee.getElementsByTagName("distance-maximum-jour").item(0).getTextContent();			
-			System.out.println("\n\n\n##########################Affichage des données de JourDAO.java :##########################\n"
+			/*System.out.println("\n\n\n##########################Affichage des données de JourDAO.java :##########################\n"
 					+ "\nJour : " + jour
 					+ "\nDistance minimum du jour : " + minimumJour
 					+ "\nDistance moyenne du jour : " + moyenneJour
-					+ "\nDistance maximum du jour : " + maximumJour);
+					+ "\nDistance maximum du jour : " + maximumJour);*/
 
 			jourObjet.setDateJour(jour);
 			jourObjet.setDistanceMinimumJour(Float.parseFloat(minimumJour));
@@ -73,9 +73,9 @@ public class JourDAO {
 				String distance = noeud.getElementsByTagName("distance").item(0).getTextContent();
 				String dateApproche = noeud.getElementsByTagName("date-approche").item(0).getTextContent();
 				
-				System.out.println("\nNEO n°" + id
+				/*System.out.println("\nNEO n°" + id
 						+ "\nDistance minimale de: " + distance
-						+ "distance Terre-Lune atteinte le : " + dateApproche);
+						+ "distance Terre-Lune atteinte le : " + dateApproche);*/
 				NeoModele neo = new NeoModele(Integer.parseInt(id), Float.parseFloat(distance), dateApproche);
 				jourObjet.AddNEO(neo);
 			}
@@ -83,7 +83,7 @@ public class JourDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("###########################################################################################\n");
+		//System.out.println("###########################################################################################\n");
 		return jourObjet;
 	}
 }

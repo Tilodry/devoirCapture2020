@@ -15,16 +15,6 @@ public class JourModele
 		super();
 		listeNeo = new ArrayList<>();
 	}
-	public JourModele(String dateJour, float distanceMinimumJour, float distanceMoyenneJour, float distanceMaximumJour,
-			List<NeoModele> listeNeo) {
-		super();
-		this.dateJour = dateJour;
-		this.distanceMinimumJour = distanceMinimumJour;
-		this.distanceMoyenneJour = distanceMoyenneJour;
-		this.distanceMaximumJour = distanceMaximumJour;
-		this.listeNeo = listeNeo;
-		this.setNombreDeNeo(listeNeo.size());
-	}
 	public JourModele(String dateJour, float distanceMinimumJour, float distanceMoyenneJour, float distanceMaximumJour) {
 		super();
 		this.dateJour = dateJour;
@@ -60,12 +50,20 @@ public class JourModele
 	public int getNombreDeNeo() {
 		return nombreDeNeo;
 	}
-	public void setNombreDeNeo(int nombreDeNeo) {
-		this.nombreDeNeo = nombreDeNeo;
-	}
 	public void AddNEO(NeoModele neo)
 	{
 		this.listeNeo.add(neo);
-		this.setNombreDeNeo(this.listeNeo.size());
+		this.nombreDeNeo = this.listeNeo.size();
+	}
+	public NeoModele getNEO(int i)
+	{
+		NeoModele neo = new NeoModele(-1, -1, "-1");
+		try {
+			neo = this.listeNeo.get(i);
+		}
+		catch (IndexOutOfBoundsException exception) {
+			System.out.println("Erreur : L'index de NEO demandée est trop grande");
+		}
+		return neo;
 	}
 }

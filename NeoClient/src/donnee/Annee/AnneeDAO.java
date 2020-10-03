@@ -18,12 +18,12 @@ public class AnneeDAO {
 
 	
 	@SuppressWarnings("deprecation")
-	public void lister()
+	public AnneeModele lister()
 	{
 		
 		String BALISEMois = "mois";
 		String BALISEAnnee = "annee";
-
+		AnneeModele anneeObjet = new AnneeModele();
 		try {
 			
 			String xml = "<annee>\r\n"
@@ -58,11 +58,16 @@ public class AnneeDAO {
 			String minimumAnnee = noeudAnnee.getElementsByTagName("distance-minimum-annee").item(0).getTextContent();
 			String moyenneAnnee = noeudAnnee.getElementsByTagName("distance-moyenne-annee").item(0).getTextContent();
 			String maximumAnnee = noeudAnnee.getElementsByTagName("distance-maximum-annee").item(0).getTextContent();			
-			System.out.println("\n\n\n##########################Affichage des données de AnneeDAO.java :##########################\n"
+			/*System.out.println("\n\n\n##########################Affichage des données de AnneeDAO.java :##########################\n"
 					+ "\nAnnée : " + annee
 					+ "\nDistance minimum de l'année : " + minimumAnnee
 					+ "\nDistance moyenne de l'année : " + moyenneAnnee
-					+ "\nDistance maximum de l'année : " + maximumAnnee);
+					+ "\nDistance maximum de l'année : " + maximumAnnee);*/
+			
+			anneeObjet.setAnnee(annee);
+			anneeObjet.setDistanceMinimumAnnee(Float.parseFloat(minimumAnnee));
+			anneeObjet.setDistanceMoyenneAnnee(Float.parseFloat(moyenneAnnee));
+			anneeObjet.setDistanceMaximumAnnee(Float.parseFloat(maximumAnnee));
 			
 			//Affichage et enregistrement des données relatives aux mois
 			NodeList listeMois = document.getElementsByTagName(BALISEMois);
@@ -75,17 +80,22 @@ public class AnneeDAO {
 				String moyenne = noeud.getElementsByTagName("distance-moyenne-mois").item(0).getTextContent();
 				String maximum = noeud.getElementsByTagName("distance-maximum-mois").item(0).getTextContent();
 				
-				System.out.println("\nMois : " + mois
+				/*System.out.println("\nMois : " + mois
 						+ "\nDistance minimum du mois : " + minimum
 						+ "\nDistance moyenne du mois : " + moyenne
-						+ "\nDistance maximum du mois: " + maximum);
-
+						+ "\nDistance maximum du mois: " + maximum);*/
+				AnneeMoisModele moisObjet = new AnneeMoisModele(mois, 
+						Float.parseFloat(minimum),
+						Float.parseFloat(moyenne),
+						Float.parseFloat(maximum));
+				anneeObjet.AddMois(moisObjet);
+				
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("###########################################################################################\n");
-
+		//System.out.println("###########################################################################################\n");
+		return anneeObjet;
 	}
 }
