@@ -1,11 +1,11 @@
-package donnee.Annee;
+package modele;
 
-public class AnneeMoisModele {
+public class Annee_MoisModele {
 	protected String dateMois;
 	protected float distanceMinimumMois;
 	protected float distanceMoyenneMois;
 	protected float distanceMaximumMois;
-	public AnneeMoisModele(String dateJour, float distanceMinimumJour, float distanceMoyenneJour,
+	public Annee_MoisModele(String dateJour, float distanceMinimumJour, float distanceMoyenneJour,
 			float distanceMaximumJour) {
 		super();
 		this.dateMois = dateJour;
@@ -13,28 +13,33 @@ public class AnneeMoisModele {
 		this.distanceMoyenneMois = distanceMoyenneJour;
 		this.distanceMaximumMois = distanceMaximumJour;
 	}	
+	// ####################################Fonctions pour LUCAS (getters)####################################
 	public String getDateMois() {
 		return dateMois;
-	}
-	public void setDateMois(String dateMois) {
-		this.dateMois = dateMois;
-	}
-	public float getDistanceMinimumMois() {
-		return distanceMinimumMois;
-	}
-	public void setDistanceMinimumMois(float distanceMinimumMois) {
-		this.distanceMinimumMois = distanceMinimumMois;
-	}
-	public float getDistanceMoyenneMois() {
-		return distanceMoyenneMois;
-	}
-	public void setDistanceMoyenneMois(float distanceMoyenneMois) {
-		this.distanceMoyenneMois = distanceMoyenneMois;
 	}
 	public float getDistanceMaximumMois() {
 		return distanceMaximumMois;
 	}
+	public float getDistanceMoyenneMois() {
+		return distanceMoyenneMois;
+	}
+	public float getDistanceMinimumMois() {
+		return distanceMinimumMois;
+	}
+	// ######################################################################################################
+	
+	// ############################################### Setters ##############################################
+	public void setDateMois(String dateMois) {
+		this.dateMois = dateMois;
+	}
+	public void setDistanceMinimumMois(float distanceMinimumMois) {
+		this.distanceMinimumMois = distanceMinimumMois;
+	}
+	public void setDistanceMoyenneMois(float distanceMoyenneMois) {
+		this.distanceMoyenneMois = distanceMoyenneMois;
+	}
 	public void setDistanceMaximumMois(float distanceMaximumMois) {
 		this.distanceMaximumMois = distanceMaximumMois;
 	}
+	// ######################################################################################################
 }
