@@ -1,29 +1,27 @@
-package donnee.Jour;
-import java.io.IOException;
+package donnee;
 import java.io.StringBufferInputStream;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
+
+import modele.Jour_Modele;
+import modele.Jour_NeoModele;
 
 
 public class JourDAO {
 
 	
 	@SuppressWarnings("deprecation")
-	public void lister()
+	public Jour_Modele lister()
 	{
-		
 		String BALISENeo = "near-earth-object";
 		String BALISEJour = "jour";
-
+		Jour_Modele jourObjet = new Jour_Modele();
 		try {
 			
 			String xml = "<jour>\r\n"
@@ -49,20 +47,21 @@ public class JourDAO {
 			Document document = parseur.parse(new StringBufferInputStream(xml));
 			
 			
-			// Affichage des données relatives à l'année
+			//Enregistrement des données relatives à l'année
 			NodeList listeAnnee = document.getElementsByTagName(BALISEJour); 
 			Element noeudAnnee = (Element)listeAnnee.item(0);
 			String jour = noeudAnnee.getElementsByTagName("date-jour").item(0).getTextContent();
 			String minimumJour = noeudAnnee.getElementsByTagName("distance-minimum-jour").item(0).getTextContent();
 			String moyenneJour = noeudAnnee.getElementsByTagName("distance-moyenne-jour").item(0).getTextContent();
 			String maximumJour = noeudAnnee.getElementsByTagName("distance-maximum-jour").item(0).getTextContent();			
-			System.out.println("\n\n\n##########################Affichage des données de JourDAO.java :##########################\n"
-					+ "\nJour : " + jour
-					+ "\nDistance minimum du jour : " + minimumJour
-					+ "\nDistance moyenne du jour : " + moyenneJour
-					+ "\nDistance maximum du jour : " + maximumJour);
+
+			jourObjet.setDateJour(jour);
+			jourObjet.setDistanceMinimumJour(Float.parseFloat(minimumJour));
+			jourObjet.setDistanceMoyenneJour(Float.parseFloat(moyenneJour));
+			jourObjet.setDistanceMaximumJour(Float.parseFloat(maximumJour));
+
 			
-			//Affichage et enregistrement des données relatives aux mois
+			//Enregistrement des données relatives aux mois
 			NodeList listeMois = document.getElementsByTagName(BALISENeo);
 			for(int position = 0; position < listeMois.getLength(); position++)
 			{
@@ -72,14 +71,13 @@ public class JourDAO {
 				String distance = noeud.getElementsByTagName("distance").item(0).getTextContent();
 				String dateApproche = noeud.getElementsByTagName("date-approche").item(0).getTextContent();
 				
-				System.out.println("\nNEO n°" + id
-						+ "\nDistance minimale de: " + distance
-						+ "distance Terre-Lune atteinte le : " + dateApproche);
+				Jour_NeoModele neo = new Jour_NeoModele(Integer.parseInt(id), Float.parseFloat(distance), dateApproche);
+				jourObjet.AddNEO(neo);
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("###########################################################################################\n");
+		return jourObjet;
 	}
 }

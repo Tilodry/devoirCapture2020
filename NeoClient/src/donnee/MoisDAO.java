@@ -1,4 +1,4 @@
-package donnee.Mois;
+package donnee;
 import java.io.IOException;
 import java.io.StringBufferInputStream;
 import java.util.ArrayList;
@@ -13,17 +13,20 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import modele.Mois_JourModele;
+import modele.Mois_Modele;
+
 
 public class MoisDAO {
 
 	
 	@SuppressWarnings("deprecation")
-	public void lister()
+	public Mois_Modele lister()
 	{
 		
 		String BALISEJour = "jour";
 		String BALISEMois = "mois";
-
+		Mois_Modele moisObjet = new Mois_Modele();
 		try {
 			
 			String xml = "<mois>\r\n"
@@ -50,22 +53,20 @@ public class MoisDAO {
 			DocumentBuilder parseur = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 			Document document = parseur.parse(new StringBufferInputStream(xml));
 			
-			
-			// Affichage des données relatives au mois
+			// Enregistrement des données relatives au mois
 			NodeList listeAnnee = document.getElementsByTagName(BALISEMois); 
 			Element noeudAnnee = (Element)listeAnnee.item(0);
 			String mois = noeudAnnee.getElementsByTagName("date-mois").item(0).getTextContent();
 			String minimumMois = noeudAnnee.getElementsByTagName("distance-minimum-mois").item(0).getTextContent();
 			String moyenneMois = noeudAnnee.getElementsByTagName("distance-moyenne-mois").item(0).getTextContent();
 			String maximumMois = noeudAnnee.getElementsByTagName("distance-maximum-mois").item(0).getTextContent();			
-			System.out.println("\n\n\n##########################Affichage des données de MoisDAO.java :##########################\n"
-					+ "\nMois : " + mois
-					+ "\nDistance minimum du mois : " + minimumMois
-					+ "\nDistance moyenne du mois : " + moyenneMois
-					+ "\nDistance maximum du mois : " + maximumMois);
+
+			moisObjet.setMois(mois);
+			moisObjet.setMinimum(Float.parseFloat(minimumMois));
+			moisObjet.setMoyenne(Float.parseFloat(moyenneMois));
+			moisObjet.setMaximum(Float.parseFloat(maximumMois));
 			
-			
-			//Affichage et enregistrement des données relatives aux jours
+			//Enregistrement des données relatives aux jours
 			NodeList listeMois = document.getElementsByTagName(BALISEJour);
 			for(int position = 0; position < listeMois.getLength(); position++)
 			{
@@ -76,16 +77,17 @@ public class MoisDAO {
 				String moyenneJour = noeud.getElementsByTagName("distance-moyenne-jour").item(0).getTextContent();
 				String maximumJour = noeud.getElementsByTagName("distance-maximum-jour").item(0).getTextContent();
 				
-				System.out.println("\nDate du jour : " + jour
-						+ "\nDistance minimum du jour: " + minimumJour
-						+ "\nDistance moyenne du jour: " + moyenneJour
-						+ "\nDistance maximum du jour: " + maximumJour);
-
+				Mois_JourModele jourObjet = new Mois_JourModele(
+						jour,
+						Float.parseFloat(minimumJour),
+						Float.parseFloat(moyenneJour),
+						Float.parseFloat(maximumJour));
+				moisObjet.addJour(jourObjet);
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("###########################################################################################\n");
+		return moisObjet;
 	}
 }

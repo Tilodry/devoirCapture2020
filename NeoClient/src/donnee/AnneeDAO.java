@@ -1,4 +1,4 @@
-package donnee.Annee;
+package donnee;
 import java.io.IOException;
 import java.io.StringBufferInputStream;
 import java.util.ArrayList;
@@ -13,19 +13,21 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import modele.Annee_Modele;
+import modele.Annee_MoisModele;
+
 
 public class AnneeDAO {
 
 	
 	@SuppressWarnings("deprecation")
-	public void lister()
+	public Annee_Modele lister()
 	{
 		
 		String BALISEMois = "mois";
 		String BALISEAnnee = "annee";
-
+		Annee_Modele anneeObjet = new Annee_Modele();
 		try {
-			
 			String xml = "<annee>\r\n"
 					+ "	<date-annee>2020</date-annee>\r\n"
 					+ "	<distance-minimum-annee>10.4730648551</distance-minimum-annee>\r\n"
@@ -50,42 +52,41 @@ public class AnneeDAO {
 			DocumentBuilder parseur = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 			Document document = parseur.parse(new StringBufferInputStream(xml));
 			
-			
-			// Affichage des données relatives à l'année
+			//Enregistrement des données relatives à l'année
 			NodeList listeAnnee = document.getElementsByTagName(BALISEAnnee); 
 			Element noeudAnnee = (Element)listeAnnee.item(0);
+			
 			String annee = noeudAnnee.getElementsByTagName("date-annee").item(0).getTextContent();
 			String minimumAnnee = noeudAnnee.getElementsByTagName("distance-minimum-annee").item(0).getTextContent();
 			String moyenneAnnee = noeudAnnee.getElementsByTagName("distance-moyenne-annee").item(0).getTextContent();
-			String maximumAnnee = noeudAnnee.getElementsByTagName("distance-maximum-annee").item(0).getTextContent();			
-			System.out.println("\n\n\n##########################Affichage des données de AnneeDAO.java :##########################\n"
-					+ "\nAnnée : " + annee
-					+ "\nDistance minimum de l'année : " + minimumAnnee
-					+ "\nDistance moyenne de l'année : " + moyenneAnnee
-					+ "\nDistance maximum de l'année : " + maximumAnnee);
+			String maximumAnnee = noeudAnnee.getElementsByTagName("distance-maximum-annee").item(0).getTextContent();
 			
-			//Affichage et enregistrement des données relatives aux mois
+			anneeObjet.setAnnee(annee);
+			anneeObjet.setDistanceMinimumAnnee(Float.parseFloat(minimumAnnee));
+			anneeObjet.setDistanceMoyenneAnnee(Float.parseFloat(moyenneAnnee));
+			anneeObjet.setDistanceMaximumAnnee(Float.parseFloat(maximumAnnee));
+			
+			//Enregistrement des données relatives aux mois
 			NodeList listeMois = document.getElementsByTagName(BALISEMois);
 			for(int position = 0; position < listeMois.getLength(); position++)
 			{
 				Element noeud = (Element)listeMois.item(position);
-				
 				String mois = noeud.getElementsByTagName("date-mois").item(0).getTextContent();
 				String minimum = noeud.getElementsByTagName("distance-minimum-mois").item(0).getTextContent();
 				String moyenne = noeud.getElementsByTagName("distance-moyenne-mois").item(0).getTextContent();
 				String maximum = noeud.getElementsByTagName("distance-maximum-mois").item(0).getTextContent();
 				
-				System.out.println("\nMois : " + mois
-						+ "\nDistance minimum du mois : " + minimum
-						+ "\nDistance moyenne du mois : " + moyenne
-						+ "\nDistance maximum du mois: " + maximum);
-
+				Annee_MoisModele moisObjet = new Annee_MoisModele(mois, 
+						Float.parseFloat(minimum),
+						Float.parseFloat(moyenne),
+						Float.parseFloat(maximum));
+				anneeObjet.AddMois(moisObjet);
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("###########################################################################################\n");
-
+		
+		return anneeObjet;
+		
 	}
 }
