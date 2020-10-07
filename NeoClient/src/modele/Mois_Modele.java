@@ -63,19 +63,19 @@ public class Mois_Modele
 	public void setMois(String mois) {
 		this.mois = mois;
 	}
-	public float getMinimum() {
+	public float getDistanceMinimumMois() {
 		return minimum;
 	}
 	public void setMinimum(float minimum) {
 		this.minimum = minimum;
 	}
-	public float getMoyenne() {
+	public float getDistanceMoyenneMois() {
 		return moyenne;
 	}
 	public void setMoyenne(float moyenne) {
 		this.moyenne = moyenne;
 	}
-	public float getMaximum() {
+	public float getDistanceMaximumMois() {
 		return maximum;
 	}
 	public void setMaximum(float maximum) {

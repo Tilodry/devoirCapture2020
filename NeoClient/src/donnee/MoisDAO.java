@@ -1,8 +1,11 @@
 package donnee;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringBufferInputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -28,8 +31,18 @@ public class MoisDAO {
 		String BALISEMois = "mois";
 		Mois_Modele moisObjet = new Mois_Modele();
 		try {
+			String URL_LISTE = "http://51.210.104.114/NeoService/annee/2020/mois/1/";
+			String derniereBalise = "</mois>";			
+			URL urlListe = new URL(URL_LISTE);
+			InputStream flux;
+			flux = urlListe.openConnection().getInputStream();
+			Scanner lecteur = new Scanner(flux);
+			lecteur.useDelimiter(derniereBalise);
+			String xml = lecteur.next() + derniereBalise;
+			lecteur.close();
+			xml = new String(xml.getBytes("UTF-8"), "ISO-8859-1");
 			
-			String xml = "<mois>\r\n"
+			/*String xml = "<mois>\r\n"
 					+ "	<date-mois>2020-01</date-mois>\r\n"
 					+ "	<distance-minimum-mois>39.9785482853</distance-minimum-mois>\r\n"
 					+ "	<distance-moyenne-mois>71.894683299825</distance-moyenne-mois>\r\n"
@@ -48,7 +61,7 @@ public class MoisDAO {
 					+ "			<distance-maximum-jour>78.1725672811</distance-maximum-jour>\r\n"
 					+ "		</jour>\r\n"
 					+ "	</liste-jours>\r\n"
-					+ "</mois>";
+					+ "</mois>";*/
 			
 			DocumentBuilder parseur = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 			Document document = parseur.parse(new StringBufferInputStream(xml));

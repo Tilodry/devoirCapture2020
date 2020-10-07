@@ -1,6 +1,8 @@
 package donnee;
+import java.io.InputStream;
 import java.io.StringBufferInputStream;
-
+import java.net.URL;
+import java.util.Scanner;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -19,12 +21,24 @@ public class JourDAO {
 	@SuppressWarnings("deprecation")
 	public Jour_Modele lister()
 	{
+
 		String BALISENeo = "near-earth-object";
 		String BALISEJour = "jour";
 		Jour_Modele jourObjet = new Jour_Modele();
 		try {
 			
-			String xml = "<jour>\r\n"
+			String URL_LISTE = "http://51.210.104.114/NeoService/annee/2020/mois/1/jour/1/";
+			String derniereBalise = "</jour>";			
+			URL urlListe = new URL(URL_LISTE);
+			InputStream flux;
+			flux = urlListe.openConnection().getInputStream();
+			Scanner lecteur = new Scanner(flux);
+			lecteur.useDelimiter(derniereBalise);
+			String xml = lecteur.next() + derniereBalise;
+			lecteur.close();
+			xml = new String(xml.getBytes("UTF-8"), "ISO-8859-1");
+			
+			/*String xml = "<jour>\r\n"
 					+ "	<date-jour>2020-01-01</date-jour>\r\n"
 					+ "	<distance-minimum-jour>39.9785482853</distance-minimum-jour>\r\n"
 					+ "	<distance-moyenne-jour>70.6153993155</distance-moyenne-jour>\r\n"
@@ -42,6 +56,7 @@ public class JourDAO {
 					+ "		</near-earth-object>\r\n"
 					+ "	</liste-near-earth-objects>\r\n"
 					+ "</jour>";
+					*/
 			
 			DocumentBuilder parseur = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 			Document document = parseur.parse(new StringBufferInputStream(xml));

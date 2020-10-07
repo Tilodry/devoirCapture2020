@@ -1,8 +1,11 @@
 package donnee;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringBufferInputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -23,12 +26,23 @@ public class AnneeDAO {
 	@SuppressWarnings("deprecation")
 	public Annee_Modele lister()
 	{
-		
 		String BALISEMois = "mois";
 		String BALISEAnnee = "annee";
 		Annee_Modele anneeObjet = new Annee_Modele();
 		try {
-			String xml = "<annee>\r\n"
+			String URL_LISTE = "http://51.210.104.114/NeoService/annee/2020/";
+			String derniereBalise = "</annee>";			
+			URL urlListe = new URL(URL_LISTE);
+			InputStream flux;
+			flux = urlListe.openConnection().getInputStream();
+			Scanner lecteur = new Scanner(flux);
+			lecteur.useDelimiter(derniereBalise);
+			String xml = lecteur.next() + derniereBalise;
+			lecteur.close();
+			xml = new String(xml.getBytes("UTF-8"), "ISO-8859-1");
+			
+			
+			/*String xml = "<annee>\r\n"
 					+ "	<date-annee>2020</date-annee>\r\n"
 					+ "	<distance-minimum-annee>10.4730648551</distance-minimum-annee>\r\n"
 					+ "	<distance-moyenne-annee>59.61035961088</distance-moyenne-annee>\r\n"
@@ -47,7 +61,7 @@ public class AnneeDAO {
 					+ "			<distance-maximum-mois>10.4730648551</distance-maximum-mois>\r\n"
 					+ "		</mois>\r\n"
 					+ "	</liste-mois>\r\n"
-					+ "</annee>";
+					+ "</annee>";*/
 			
 			DocumentBuilder parseur = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 			Document document = parseur.parse(new StringBufferInputStream(xml));
