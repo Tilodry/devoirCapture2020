@@ -1,11 +1,19 @@
 package vue;
+import java.text.DecimalFormat;
+
 import com.sun.media.jfxmedia.logging.Logger;
 
 import controleur.ControleurAccueil;
+import donnee.AnneeDAO;
+import donnee.JourDAO;
+import donnee.MoisDAO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import modele.Annee_Modele;
+import modele.Jour_Modele;
+import modele.Mois_Modele;
 
 public class VueAccueil extends Vue {
 
@@ -24,13 +32,23 @@ public class VueAccueil extends Vue {
 	{
 		super.activerControles();
 		
-		
+		DecimalFormat df = new DecimalFormat("##.##");
 		
 		Label accjourmoy = (Label)lookup("#accueil-journee-moyenne");
+		Jour_Modele jourModele = new JourDAO().lister();
+		accjourmoy.setText(df.format(jourModele.getDistanceMoyenneJour())+"  LD");
 
-		Label accmoismoy = (Label)lookup("#accueil-mois-moyenne");
 		
-		Label accannemoy = (Label)lookup("#accueil-annee-moyenne");
+		
+		Label accmoismoy = (Label)lookup("#accueil-mois-moyenne");
+		Mois_Modele moisModele = new MoisDAO().lister();
+		accmoismoy.setText(df.format(moisModele.getDistanceMoyenneMois())+"  LD");
+		
+		
+		
+		Label accanneemoy = (Label)lookup("#accueil-annee-moyenne");
+		Annee_Modele anneeModele = new AnneeDAO().lister();	
+		accanneemoy.setText(df.format(anneeModele.getDistanceMoyenneAnnee())+"  LD");
 		
 		
 		
