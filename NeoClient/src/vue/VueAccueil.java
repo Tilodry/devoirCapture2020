@@ -5,6 +5,7 @@ import controleur.ControleurAccueil;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 public class VueAccueil extends Vue {
 
@@ -22,6 +23,16 @@ public class VueAccueil extends Vue {
 	public void activerControles()
 	{
 		super.activerControles();
+		
+		
+		
+		Label accjourmoy = (Label)lookup("#accueil-journee-moyenne");
+
+		Label accmoismoy = (Label)lookup("#accueil-mois-moyenne");
+		
+		Label accannemoy = (Label)lookup("#accueil-annee-moyenne");
+		
+		
 		
 		Button actionNaviguerJournee = (Button) lookup("#action-naviguer-journee");
 		actionNaviguerJournee.setOnAction(new EventHandler<ActionEvent>() 

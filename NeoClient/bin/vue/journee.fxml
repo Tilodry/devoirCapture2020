@@ -172,10 +172,11 @@
                   <String fx:value="graphique" />
                </styleClass>
                <children>
-                  <TableView id="journee-tableau" layoutX="3.0" layoutY="7.0" prefHeight="225.0" prefWidth="885.0" styleClass="tableau">
+                  <TableView id="journee-tableau" layoutY="8.0" prefHeight="225.0" prefWidth="885.0" styleClass="tableau">
                     <columns>
-                      <TableColumn prefWidth="179.99996948242188" text="Heure" />
-                      <TableColumn prefWidth="683.6666564941406" text="Distance en Lunes" />
+                      <TableColumn prefWidth="290.0" text="id" />
+                      <TableColumn prefWidth="336.0" text="Distance en Lunes" />
+                        <TableColumn prefWidth="258.0" text="Date d'approche" />
                     </columns>
                   </TableView>
                </children>
