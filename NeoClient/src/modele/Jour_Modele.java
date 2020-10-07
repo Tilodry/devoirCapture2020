@@ -1,3 +1,12 @@
+/************************************************
+* Auteur : Tilodry                              *
+* Nom prog : NEO                                *
+* Nom du fichier : Jour_Modele.java             *
+* Role : Stocker les données relatives aux jours*
+* renvoyées par l'API                           *
+* Version : Finale                              *
+* Date :  07/10/2020                            *
+*************************************************/
 package modele;
 
 import java.util.ArrayList;
@@ -5,12 +14,16 @@ import java.util.List;
 
 public class Jour_Modele 
 {
+	// ######################################## Attributs #########################################
 	protected String dateJour;
 	protected float distanceMinimumJour;
 	protected float distanceMoyenneJour;
 	protected float distanceMaximumJour;
 	protected int nombreDeNeo;
 	protected List<Jour_NeoModele> listeNeo;
+	// ############################################################################################
+	
+	// ###################################### Constructeurs #######################################
 	public Jour_Modele(String dateJour, float distanceMinimumJour, float distanceMoyenneJour, float distanceMaximumJour) {
 		super();
 		this.dateJour = dateJour;
@@ -24,7 +37,9 @@ public class Jour_Modele
 		this.nombreDeNeo = 0;
 		listeNeo = new ArrayList<>();
 	}
-	// ####################################Fonctions pour LUCAS####################################
+	// ############################################################################################
+
+	// ################################## Fonctions utilisateurs ##################################
 	public Jour_NeoModele getNEO(int i) 
 	{
 		Jour_NeoModele neo = new Jour_NeoModele(-1, -1, "-1");
@@ -44,6 +59,18 @@ public class Jour_Modele
 	{
 		return this.nombreDeNeo;
 	}
+	public String getDateJour() {
+		return dateJour;
+	}
+	public float getDistanceMinimumJour() {
+		return distanceMinimumJour;
+	}
+	public float getDistanceMoyenneJour() {
+		return distanceMoyenneJour;
+	}
+	public float getDistanceMaximumJour() {
+		return distanceMaximumJour;
+	}
 	// ############################################################################################
 	
 	// ##############################Fonctions pour ajout dans la liste############################
@@ -54,28 +81,19 @@ public class Jour_Modele
 	}
 	// ############################################################################################
 	
-	// #################################### Getters et setters ####################################
-	public String getDateJour() {
-		return dateJour;
-	}
+	// ########################################## Setters #########################################
 	public void setDateJour(String dateJour) {
 		this.dateJour = dateJour;
 	}
-	public float getDistanceMinimumJour() {
-		return distanceMinimumJour;
-	}
+
 	public void setDistanceMinimumJour(float distanceMinimumJour) {
 		this.distanceMinimumJour = distanceMinimumJour;
 	}
-	public float getDistanceMoyenneJour() {
-		return distanceMoyenneJour;
-	}
+
 	public void setDistanceMoyenneJour(float distanceMoyenneJour) {
 		this.distanceMoyenneJour = distanceMoyenneJour;
 	}
-	public float getDistanceMaximumJour() {
-		return distanceMaximumJour;
-	}
+
 	public void setDistanceMaximumJour(float distanceMaximumJour) {
 		this.distanceMaximumJour = distanceMaximumJour;
 	}

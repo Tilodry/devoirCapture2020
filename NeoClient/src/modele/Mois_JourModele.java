@@ -1,10 +1,25 @@
+/************************************************
+* Auteur : Tilodry                              *
+* Nom prog : NEO                                *
+* Nom du fichier : Mois_JourModele.java         *
+* Role : Stocker les données relatives a un jour*
+* d'un mois                                     *
+* Version : Finale                              *
+* Date :  07/10/2020                            *
+*************************************************/
+
 package modele;
 
-public class Mois_JourModele {
+public class Mois_JourModele 
+{
+	// ######################################## Attributs #########################################
 	protected String dateJour;
 	protected float distanceMinimumJour;
 	protected float distanceMoyenneJour;
 	protected float distanceMaximumJour;
+	// ############################################################################################
+
+	// ###################################### Constructeurs #######################################
 	public Mois_JourModele(String dateJour, float distanceMinimumJour, float distanceMoyenneJour,
 			float distanceMaximumJour) {
 		super();
@@ -12,8 +27,10 @@ public class Mois_JourModele {
 		this.distanceMinimumJour = distanceMinimumJour;
 		this.distanceMoyenneJour = distanceMoyenneJour;
 		this.distanceMaximumJour = distanceMaximumJour;
-	}	
-	// ####################################Fonctions pour LUCAS (getters)####################################
+	}
+	// ############################################################################################
+
+	// ################################## Fonctions utilisateurs ##################################
 	public String getDateJour() {
 		return dateJour;
 	}
@@ -26,9 +43,9 @@ public class Mois_JourModele {
 	public float getDistanceMaximumJour() {
 		return distanceMaximumJour;
 	}
-	// ######################################################################################################
+	// ############################################################################################
 	
-	// ############################################### Setters ##############################################
+	// ########################################## Setters #########################################
 	public void setDateJour(String dateJour) {
 		this.dateJour = dateJour;
 	}
@@ -41,5 +58,5 @@ public class Mois_JourModele {
 	public void setDistanceMaximumJour(float distanceMaximumJour) {
 		this.distanceMaximumJour = distanceMaximumJour;
 	}
-	// ######################################################################################################
+	// ############################################################################################
 }

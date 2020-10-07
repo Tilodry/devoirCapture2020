@@ -1,3 +1,13 @@
+/************************************************
+* Auteur : Tilodry                              *
+* Nom prog : NEO                                *
+* Nom du fichier : Mois_Modele.java             *
+* Role : Stocker les données relatives aux mois *
+* renvoyées par l'API                           *
+* Version : Finale                              *
+* Date :  07/10/2020                            *
+*************************************************/
+
 package modele;
 
 import java.util.ArrayList;
@@ -5,12 +15,16 @@ import java.util.List;
 
 public class Mois_Modele 
 {
+	// ######################################## Attributs #########################################
 	protected String mois;
 	protected float minimum;
 	protected float moyenne;
 	protected float maximum;
 	protected int nombreDeJour;
 	protected List<Mois_JourModele> listeJour;
+	// ############################################################################################
+
+	// ###################################### Constructeurs #######################################
 	public Mois_Modele(String mois, float minimum, float moyenne, float maximum) {
 		super();
 		this.mois = mois;
@@ -26,7 +40,9 @@ public class Mois_Modele
 		this.nombreDeJour = 0;
 		listeJour = new ArrayList<Mois_JourModele>();
 	}
-	// ####################################Fonctions pour LUCAS####################################
+	// ############################################################################################
+
+	// ################################## Fonctions utilisateurs ##################################
 	public Mois_JourModele getJour(int i)
 	{
 		Mois_JourModele jour = new Mois_JourModele("Valeur incorrect", -1, -1, -1);
@@ -46,6 +62,18 @@ public class Mois_Modele
 	{
 		return nombreDeJour;
 	}
+	public String getMois() {
+		return mois;
+	}
+	public float getDistanceMinimumMois() {
+		return minimum;
+	}
+	public float getDistanceMoyenneMois() {
+		return moyenne;
+	}
+	public float getDistanceMaximumMois() {
+		return maximum;
+	}
 	// ############################################################################################
 	
 	// ##############################Fonctions pour ajout dans la liste############################
@@ -56,28 +84,19 @@ public class Mois_Modele
 	}
 	// ############################################################################################
 	
-	// #################################### Getters et setters ####################################
-	public String getMois() {
-		return mois;
-	}
+	// ########################################## Setters #########################################
 	public void setMois(String mois) {
 		this.mois = mois;
 	}
-	public float getDistanceMinimumMois() {
-		return minimum;
-	}
+
 	public void setMinimum(float minimum) {
 		this.minimum = minimum;
 	}
-	public float getDistanceMoyenneMois() {
-		return moyenne;
-	}
+
 	public void setMoyenne(float moyenne) {
 		this.moyenne = moyenne;
 	}
-	public float getDistanceMaximumMois() {
-		return maximum;
-	}
+
 	public void setMaximum(float maximum) {
 		this.maximum = maximum;
 	}

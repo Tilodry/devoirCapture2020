@@ -1,3 +1,13 @@
+/************************************************
+* Auteur : Tilodry                              *
+* Nom prog : NEO                                *
+* Nom du fichier : Annee_Modele.java            *
+* Role : Stocker les données relatives a l'année*
+* renvoyées par l'API                           *
+* Version : Finale                              *
+* Date :  07/10/2020                            *
+*************************************************/
+
 package modele;
 
 import java.util.ArrayList;
@@ -5,13 +15,17 @@ import java.util.List;
 
 public class Annee_Modele 
 {
+	// ######################################## Attributs #########################################
 	protected String annee;
 	protected float distanceMinimumAnnee;
 	protected float distanceMoyenneAnnee;
 	protected float distanceMaximumAnnee;
 	protected int nombreDeJour;
 	protected List<Annee_MoisModele> listeMois;
+	// ############################################################################################
 
+
+	// ###################################### Constructeurs #######################################
 	public Annee_Modele(String annee, float distanceMinimumAnnee, float distanceMoyenneAnnee,
 			float distanceMaximumAnnee) {
 		super();
@@ -27,7 +41,10 @@ public class Annee_Modele
 		this.nombreDeJour = 0;
 		this.listeMois = new ArrayList<>();
 	}
-	// ####################################Fonctions pour LUCAS####################################
+	// ############################################################################################
+
+	
+	// ################################## Fonctions utilisateurs ##################################
 	public Annee_MoisModele getMois(int i)
 	{
 		Annee_MoisModele  mois = new Annee_MoisModele("Valeur incorrect", -1, -1, -1);
@@ -47,9 +64,21 @@ public class Annee_Modele
 	{
 		return this.nombreDeJour;
 	}
+	public String getAnnee() {
+		return annee;
+	}
+	public float getDistanceMinimumAnnee() {
+		return distanceMinimumAnnee;
+	}
+	public float getDistanceMoyenneAnnee() {
+		return distanceMoyenneAnnee;
+	}
+	public float getDistanceMaximumAnnee() {
+		return distanceMaximumAnnee;
+	}
 	// ############################################################################################
 	
-	// ##############################Fonctions pour ajout dans la liste############################
+	// ############################# Fonctions pour ajout dans la liste ###########################
 	public void AddMois(Annee_MoisModele mois)
 	{
 		this.listeMois.add(mois);
@@ -58,27 +87,17 @@ public class Annee_Modele
 	// ############################################################################################
 	
 	// ######################################### Setters ##########################################
-	public String getAnnee() {
-		return annee;
-	}
 	public void setAnnee(String annee) {
 		this.annee = annee;
-	}
-	public float getDistanceMinimumAnnee() {
-		return distanceMinimumAnnee;
 	}
 	public void setDistanceMinimumAnnee(float distanceMinimumAnnee) {
 		this.distanceMinimumAnnee = distanceMinimumAnnee;
 	}
-	public float getDistanceMoyenneAnnee() {
-		return distanceMoyenneAnnee;
-	}
+
 	public void setDistanceMoyenneAnnee(float distanceMoyenneAnnee) {
 		this.distanceMoyenneAnnee = distanceMoyenneAnnee;
 	}
-	public float getDistanceMaximumAnnee() {
-		return distanceMaximumAnnee;
-	}
+
 	public void setDistanceMaximumAnnee(float distanceMaximumAnnee) {
 		this.distanceMaximumAnnee = distanceMaximumAnnee;
 	}
