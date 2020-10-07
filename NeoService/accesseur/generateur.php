@@ -8,7 +8,8 @@
 
     for($mois = 1; $mois <=10; $mois++)
     {
-        for($jour = 1; $jour < $jourparmois[$mois]; $jour++)
+        $numeroMois = 0;
+        for($jour = 1; $jour <= $jourparmois[$numeroMois]; $jour++)
         {
             for($heure = 0; $heure < 24; $heure++)
             {
@@ -32,6 +33,7 @@
               }
             }
         }
+        $numeroMois++;
     }
 
 ?>
