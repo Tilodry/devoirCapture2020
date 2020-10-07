@@ -81,6 +81,10 @@ public class VueAnnee extends Vue {
 		AnneeDAO anneeDao = new AnneeDAO();
 		Annee_Modele anneeObjet = anneeDao.lister();
 		
+		Label anneeTitre = (Label)lookup("#annee-titre");
+		anneeTitre.setText("Année : " + anneeObjet.getAnnee());
+
+		
 		Label anemi = (Label)lookup("#annee-minimum");
 		anemi.setText( String.valueOf(df.format(anneeObjet.getDistanceMinimumAnnee()))+" LD");
 		

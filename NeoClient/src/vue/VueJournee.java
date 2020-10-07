@@ -82,7 +82,8 @@ public class VueJournee extends Vue {
 		Jour_Modele jourObjet = jourDao.lister();
 		
 		
-		
+		Label titre = (Label)lookup("#journee-titre");
+		titre.setText("Aujourd'hui : " + jourObjet.getDateJour());
 		
 		Label joumi = (Label)lookup("#journee-minimum");
 		joumi.setText( String.valueOf(df.format(jourObjet.getDistanceMinimumJour()))+" LD");

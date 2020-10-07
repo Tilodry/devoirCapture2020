@@ -84,7 +84,8 @@ public class VueMois extends Vue {
 		MoisDAO moisDao = new MoisDAO();
 		Mois_Modele moisObjet = moisDao.lister();
 		
-		
+		Label moisTitre = (Label)lookup("#mois-titre");
+		moisTitre.setText("Mois : " + moisObjet.getMois());
 		
 		Label moimi = (Label)lookup("#mois-minimum");
 		moimi.setText( String.valueOf(df.format(moisObjet.getDistanceMinimumMois()))+" LD");
